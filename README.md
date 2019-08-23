@@ -1,11 +1,12 @@
-# AI Learning to land a Rocket | Google’s Deepmind and Reinforcement Learning Implementation
+# AI Learning to land a Rocket 
 
 ## Introduction
 In this article, we will cover a brief introduction to **Reinforcement Learning** and will learn about how to train a **Deep Q-Network(DQN)** agent to solve the “***Lunar Lander***” Environment in OpenAI gym.
+We will use Google’s Deepmind and Reinforcement Learning Implementation for this.
 
 ![https://raw.githubusercontent.com/fakemonk1/Reinforcement-Learning-Lunar_Lander/master/images/3.gif](https://raw.githubusercontent.com/fakemonk1/Reinforcement-Learning-Lunar_Lander/master/images/3.gif)
 
-Reinforcement Learning is a massive topic and we are not going to cover everything here in detail. Instead, the aim of this article is to get your hands dirty with some practical example of reinforcement learning and show the implementation of RL in solving real-world use cases.
+**Reinforcement Learning** is a massive topic and we are not going to cover everything here in detail. Instead, the aim of this article is to get your hands dirty with some practical example of reinforcement learning and show the implementation of RL in solving real-world use cases.
 
 We will discuss the rationale behind using the DQN and will cover the Experience Replay and Exploration-Exploitation dilemma encountered while training the Neural Network is discussed as well. In the last, we will discuss the agent’s training and testing performance and the effect of hyper-parameter in the agent’s performance.
 
@@ -30,8 +31,6 @@ We are using ‘Lunar Lander’ environment from OpenAI gym. This environment de
 2.  **Action**: For each state of the environment, the agent takes an action based on its current state. The agent can choose to take action from four discrete actions: do_nothing, fire_left_engine, fire_right_engine and fire_main_engine.
     
 3. **Reward**: The agent receives a small negative reward every time it carries out an action. This is done in an attempt to teach the agent to land the rocket as quickly and efficiently as possible. If the lander crashes or comes to rest, the episode is considered complete and it will be receiving additional -100 or +100 points depending on the outcome.
-
-TODO
 
 ## DQN Algorithm
 The deep Q-learning algorithm that includes experience replay and ϵ-greedy exploration is as follows:
@@ -91,19 +90,15 @@ After 600 the agent is fully trained. It learns to handle the rocket perfectly a
 
 ## Result analysis
 
+Figure 1. The reward for each training episode
 ![Figure 1](https://raw.githubusercontent.com/fakemonk1/Reinforcement-Learning-Lunar_Lander/master/images/Figure_1_Reward%20for%20each%20training%20episode.png)
-
-Figure 1. The reward for each training episode  
 
 Figure 1 shows the reward values per experience at the time of training. Blue lines denote the reward for each training episodes and the orange line shows the rolling mean of the last 100 episodes. The agent keeps learning with the time and the value of the rolling mean increases with the training episodes. 
 
-
-
+The average reward in the earlier episodes is mostly negative because the agent has just started learning. Eventually, The agent starts performing relatively better and the average reward starts going up and becoming positive after 300 episodes. After 514 episodes the rolling mean crosses 200 and the training concludes. There are a couple of episodes where the agent has received negative awards at this time, but I believe if the agent is allowed to continue training, these instances will reduce.
 
 Figure 2. The reward for each testing episode
-
-The average reward in the earlier episodes is mostly negative because the agent has just started learning. Eventually, The agent starts performing relatively better and the average reward starts going up and becoming positive after 300 episodes. After 514 episodes the rolling mean crosses 200 and the training concludes. There are a couple of episodes where the agent has received negative awards at this time, but I believe if the agent is allowed to continue training, these instances will reduce.
+![](https://raw.githubusercontent.com/fakemonk1/Reinforcement-Learning-Lunar_Lander/master/images/Figure_2_Reward%20for%20each%20testing%20episode.png)
 
 Figure 2 shows the performance of the trained model for 100 episodes in the Lunar Lander environment. The trained model is performing well in the environment with all the rewards being positive. The average reward for 100 testing episodes is 205.
 
-![](https://raw.githubusercontent.com/fakemonk1/Reinforcement-Learning-Lunar_Lander/master/images/Figure_2_Reward%20for%20each%20testing%20episode.png)
